@@ -30,10 +30,10 @@ activityLabels <- read.table('./data/UCI HAR Dataset/activity_labels.txt')
 #View(xTrain)
 #View(yTrain)
 
-#x data set
+#x data set - bind training and test data sets
 xDataSet <- rbind(xTrain, xTest)
 
-# y data set
+# y data set - bind training and test data sets
 yDataSet <- rbind(yTrain, yTest)
 
 # 'subject' data set
@@ -43,7 +43,7 @@ subjectDataSet <- rbind(subjectTrain, subjectTest)
 # Extract only the measurements on the mean and standard deviation for each measurement
 
 
-# get only columns with mean() or std() in their names
+# Find columns with mean or standard deviation
 meanStd <- grep("-(mean|std)\\(\\)", features[, 2])
 
 # Get the needed Data
