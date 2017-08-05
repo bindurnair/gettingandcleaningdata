@@ -60,10 +60,32 @@ names(yDataSet) <- "Activity"
 names(subjectDataSet) <- "Subject"
 
 
+
+
 #combining all data sets
 finalData <- cbind(xDataSet, yDataSet, subjectDataSet)
 
 #View(finalData)
+
+# get column names
+activityCols <- colnames(finalData)
+
+# remove special character
+activityCols <- gsub("[\\(\\)-]", "", activityCols)
+
+# expand abbreviations and clean up names
+activityCols <- gsub("^f", "frequencyDomain", activityCols)
+activityCols <- gsub("^t", "timeDomain", activityCols)
+activityCols <- gsub("Acc", "Accelerometer", activityCols)
+activityCols <- gsub("Gyro", "Gyroscope", activityCols)
+activityCols <- gsub("Mag", "Magnitude", activityCols)
+activityCols <- gsub("Freq", "Frequency", activityCols)
+activityCols <- gsub("mean", "Mean", activityCols)
+activityCols <- gsub("std", "StandardDeviation", activityCols)
+activityCols <- gsub("BodyBody", "Body", activityCols)
+
+# use new labels as column names
+colnames(finalData) <- activityCols
 
 #From the data set in step 4, creates a second, independent tidy data set with the average 
 #of each variable for each activity and each subject
